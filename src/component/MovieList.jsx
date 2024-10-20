@@ -34,7 +34,7 @@ const MovieList = ({ title, data, scrollToTop }) => {
   
   return (
     <Element name={title} className="text-white p-10 mb-10">
-      <div className="uppercase text-xl mb-4">{title}</div>
+      <h2 className="uppercase text-xl mb-4">{title}</h2>
       <Carousel
         responsive={responsive}
         className="flex items-center space-x-4 z-40"
@@ -44,7 +44,7 @@ const MovieList = ({ title, data, scrollToTop }) => {
             key={item.id}
             className="w-[200px] h-[300px] relative group flex-shrink-0"
           >
-            <Link className="group-hover:scale-105 transition-transform duration-500 ease-in-out w-full h-full cursor-pointer" onClick={scrollToTop}>
+            <div className="group-hover:scale-105 transition-transform duration-500 ease-in-out w-full h-full cursor-pointer" onClick={scrollToTop}>
               <div className="absolute top-0 left-0 w-full h-full bg-black/40" />
               <img
                 src={`${import.meta.env.VITE_IMG_URL}${item.poster_path}`}
@@ -56,13 +56,44 @@ const MovieList = ({ title, data, scrollToTop }) => {
                   {item.title || item.original_title}
                 </p>
               </div>
-            </Link>
+            </div>
           </div>
         ))}
       </Carousel>
     </Element>
   );
 };
+
+// return (
+//   <div className="text-white p-10 mb-10">
+//     <h2 className="uppercase text-xl mb-4">{title}</h2>
+//     <Carousel
+//       responsive={responsive}
+//       className="flex items-center space-x-4"
+//     >
+//       {data.map((item) => (
+//         <div
+//           key={item.id}
+//           className="w-[200px] h-[300px] relative group flex-shrink-0"
+//         >
+//           <div className="group-hover:scale-105 transition-transform duration-500 ease-in-out w-full h-full cursor-pointer">
+//             <div className="absolute top-0 left-0 w-full h-full bg-black/40" />
+//             <img
+//               src={`${import.meta.env.VITE_IMG_URL}${item.poster_path}`}
+//               alt={item.title}
+//               className="w-full h-full object-cover"
+//             />
+//             <div className="absolute bottom-4 left-2">
+//               <p className="uppercase text-md">
+//                 {item.title || item.original_title}
+//               </p>
+//             </div>
+//           </div>
+//         </div>
+//       ))}
+//     </Carousel>
+//   </div>
+// );
 
 MovieList.propTypes = {
   title: PropTypes.string.isRequired,
