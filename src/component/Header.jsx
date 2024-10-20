@@ -4,7 +4,7 @@ import { Link } from "react-scroll";
 
 function Header({ onSearch, scrollToTop, scrollTo, resetSearch }) {
   const [txtSearch, setSearch] = useState("");
-  const handleHomeClick = () => {
+  const scrollToTopHandler = () => {
     scrollToTop();
     resetSearch();
   };
@@ -14,13 +14,17 @@ function Header({ onSearch, scrollToTop, scrollTo, resetSearch }) {
       onSearch(txtSearch);
     }, 300);
   };
+  const scrollToHandler = (elementName) => {
+    resetSearch();
+    scrollTo(elementName);
+  };
 
   return (
     <div className="p-4 bg-black flex items-center justify-between sticky top-0 z-50">
       <div className="flex items-center space-x-4">
         <Link
           className="text-[40px] uppercase font-bold text-red-500 cursor-pointer"
-          onClick={handleHomeClick}
+          onClick={scrollToTopHandler}
         >
           CineZone
         </Link>
@@ -30,7 +34,7 @@ function Header({ onSearch, scrollToTop, scrollTo, resetSearch }) {
             smooth={true}
             duration={500}
             className="text-wrap text-white cursor-pointer"
-            onClick={() => scrollTo("Phim HOT")}
+            onClick={() => scrollToHandler("Phim HOT")}
           >
             Phim HOT
           </Link>
@@ -39,7 +43,7 @@ function Header({ onSearch, scrollToTop, scrollTo, resetSearch }) {
             smooth={true}
             duration={500}
             className="text-wrap text-white cursor-pointer"
-            onClick={() => scrollTo("Phim đề cử")}
+            onClick={() => scrollToHandler("Phim đề cử")}
           >
             Phim đề cử
           </Link>
@@ -67,6 +71,7 @@ function Header({ onSearch, scrollToTop, scrollTo, resetSearch }) {
 Header.propTypes = {
   onSearch: PropTypes.func.isRequired,
   scrollTo: PropTypes.func.isRequired,
+  elementName: PropTypes.string.isRequired,
 };
 
 export default Header;

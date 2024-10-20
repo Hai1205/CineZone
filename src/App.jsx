@@ -35,12 +35,12 @@ function App() {
     });
   };
 
-    const scrollTo = (elementName) => {
+  const scrollTo = (elementName) => {
     scroll.scrollTo(elementName, {
       duration: 300,
       delay: 0,
       smooth: "easeInOutQuart",
-      offset: -50 // Thêm offset âm 50px
+      offset: -50,
     });
   };
 
