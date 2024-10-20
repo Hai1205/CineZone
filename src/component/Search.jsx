@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
+import { Link } from 'react-scroll';
 
-const Search = ({ title, data }) => {
+const Search = ({ title, data, scrollToTop }) => {
   return (
     <div className="text-white p-10 mb-10">
       <h2 className="uppercase text-xl mb-4">{title}</h2>
@@ -10,9 +11,8 @@ const Search = ({ title, data }) => {
             <div
               key={item.id}
               className="w-[200px] h-[300px] relative group"
-              //   onClick={() => handle}
             >
-              <div className="group-hover:scale-105 transition-transform duration-500 ease-in-out w-full h-full cursor-pointer">
+              <Link className="group-hover:scale-105 transition-transform duration-500 ease-in-out w-full h-full cursor-pointer" onClick={scrollToTop}>
                 <div className="absolute top-0 left-0 w-full h-full bg-black/40" />
                 <img
                   src={`${import.meta.env.VITE_IMG_URL}${item.poster_path}`}
@@ -24,7 +24,7 @@ const Search = ({ title, data }) => {
                     {item.title || item.original_title}
                   </p>
                 </div>
-              </div>
+              </Link>
             </div>
           ))
         ) : (
@@ -38,6 +38,7 @@ const Search = ({ title, data }) => {
 Search.propTypes = {
   title: PropTypes.string.isRequired,
   data: PropTypes.array.isRequired,
+  scrollToTop: PropTypes.func.isRequired,
 };
 
 export default Search;
